@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
         { url: 'https://www.jsdeveloper.sh/_next/image?url=%2Fdatabase%2Fjs%2Fassets%2F7093155435955806208.jpeg&w=640&q=75', likes: 0 },
         { url: 'https://www.jsdeveloper.sh/_next/image?url=%2Fdatabase%2Fjs%2Fassets%2F7086596213147357184.jpeg&w=640&q=75', likes: 0 },
         { url: 'https://www.jsdeveloper.sh/_next/image?url=%2Fdatabase%2Fjs%2Fassets%2F7089869764679880705.jpeg&w=640&q=75', likes: 0 },
-        { url: 'https://www.jsdeveloper.sh/_next/image?url=%2Fdatabase%2Fjs%2Fassets%2F7084060198503370752.jpeg&w=640&q=75', likes: 0 },               { url: 'https://www.jsdeveloper.sh/_next/image?url=%2Fdatabase%2Fjs%2Fassets%2F7073914412620767232.jpeg&w=640&q=75', likes: 0 },
+        { url: 'https://www.jsdeveloper.sh/_next/image?url=%2Fdatabase%2Fjs%2Fassets%2F7084060198503370752.jpeg&w=640&q=75', likes: 0 },               
+        { url: 'https://www.jsdeveloper.sh/_next/image?url=%2Fdatabase%2Fjs%2Fassets%2F7073914412620767232.jpeg&w=640&q=75', likes: 0 },
         { url: 'https://www.jsdeveloper.sh/_next/image?url=%2Fdatabase%2Fjs%2Fassets%2F7072100467303931904.jpeg&w=640&q=75', likes: 0 },
         { url: 'https://www.jsdeveloper.sh/_next/image?url=%2Fdatabase%2Fjs%2Fassets%2F7066660914556538880.jpeg&w=640&q=75', likes: 0 },
         { url: 'https://www.jsdeveloper.sh/_next/image?url=%2Fdatabase%2Fjs%2Fassets%2F7069562592859488256.jpeg&w=640&q=75', likes: 0 },
@@ -31,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to generate meme items
     function generateMemeItems() {
         memes.forEach(meme => {
+            let haveLiked = false;
             const memeItem = document.createElement('div');
             memeItem.classList.add('meme-item');
 
@@ -41,11 +43,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const likeButton = document.createElement('button');
             likeButton.classList.add('like-button');
-            likeButton.textContent = `Like (${meme.likes})`;
+            likeButton.textContent = `🤍 ${meme.likes}`;
 
             likeButton.addEventListener('click', function () {
-                meme.likes++;
-                likeButton.textContent = `Like (${meme.likes})`;
+                if (!meme.liked) {
+                    meme.likes++;
+                    meme.liked = true;
+                    likeButton.textContent = `❤️ ${meme.likes}`;
+                } else {
+                    meme.likes--;
+                    meme.liked = false;
+                    likeButton.textContent = `🤍 ${meme.likes}`;
+                }
             });
 
             memeItem.appendChild(img);
