@@ -63,13 +63,13 @@ nav ul li a {
     border-radius: 5px;
     text-align: center;
     height: fit-content;
+    transition: all 0.3s ease;
 }
 
 /* transition to scale this a little bit for a interactive feel */
 .meme-item:hover {
   transform: scale(1.02);
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-  transition: all 0.3s ease;
 }
 
 .meme-item img {
